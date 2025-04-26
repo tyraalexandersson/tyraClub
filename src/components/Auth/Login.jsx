@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import supabaseClient from "../../lib/supabaseClient";
+import supabase from "../../../lib/supabaseClient";
 
 const Login = () => {
   async function signInWithEmail() {
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: "valid.email@supabase.io",
       password: "example-password",
     });
 
     async function signUpNewUser() {
-      const { data, error } = await supabaseClient.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email: "valid.email@supabase.io",
         password: "example-password",
         options: {

@@ -1,4 +1,3 @@
-import Navbar from "../Navbar/Navbar";
 import "./Home.style.css";
 
 const Home = () => {
