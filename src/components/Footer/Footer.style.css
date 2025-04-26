@@ -1,0 +1,36 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.signature {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #61dafb;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+
+  animation: moveLeftRight 2s infinite ease-in-out;
+}
+
+.signature > p {
+  margin: 0;
+  padding: 0;
+}
