@@ -1,42 +1,60 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
-const AppContext = createContext({});
+// Create the context
+const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState("");
-  const [session, setSession] = useState(null);
   const [error, setError] = useState("");
-  const [loadingInitial, setLoadingInitial] = useState(true);
-
-  const initializeUser = (session) => {
-    setSession(session);
-
-    let username;
-    if (session) {
-      username = session.user.user_metadata.user_name;
-    } else {
-      username = localStorage.getItem("username") || "Guest";
-    }
-    setUsername(username);
-    localStorage.setItem("username", username);
-  };
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      initializeUser(session);
-    });
+    // Get the session when the app loads
+    const getSession = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      if (data?.session) {
+        setUser(data.session.user);
+        setUsername(data.session.user.user_metadata.user_name || "Guest");
+      }
+      setLoading(false);
+    };
+
+    getSession();
+
+    // Listen to auth state changes (login, logout)
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (session?.user) {
+          setUser(session.user);
+          setUsername(session.user.user_metadata.user_name);
+        } else {
+          setUser(null);
+          setUsername("Guest");
+        }
+      }
+    );
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
   }, []);
+
+  // Log out the user and reset context state
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      setError(error.message);
+    } else {
+      setUser(null);
+      setUsername("Guest");
+    }
+  };
 
   return (
     <AppContext.Provider
-      value={{
-        loadingInitial,
-        error,
-        username,
-        setUsername,
-        session,
-      }}
+      value={{ user, setUser, username, setUsername, loading, error, logout }}
     >
       {children}
     </AppContext.Provider>
@@ -45,4 +63,4 @@ const AppContextProvider = ({ children }) => {
 
 const useAppContext = () => useContext(AppContext);
 
-export { AppContext as default, AppContextProvider, useAppContext };
+export { AppContextProvider, useAppContext };
