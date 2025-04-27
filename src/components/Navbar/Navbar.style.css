@@ -1,3 +1,4 @@
+/* Base styles for larger screens */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -10,15 +11,94 @@
   display: flex;
   gap: 20px;
 }
+
 .navLink {
-  font-size: 1.5 rem;
+  font-size: 1.3rem;
   font-weight: 800;
   font-family: "Roboto", sans-serif;
   cursor: pointer;
   text-decoration: none;
   color: #242424;
+  text-transform: uppercase;
 }
+
 a {
   text-decoration: none;
   color: #242424;
+}
+
+.logOutBtn {
+  cursor: pointer;
+  text-decoration: none;
+  color: #242424;
+  background-color: #c1a4b8;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.logoNav {
+  width: 4rem;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.bar {
+  width: 30px;
+  height: 4px;
+  background-color: #242424;
+  border-radius: 5px;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px; /* Reduced padding */
+  }
+
+ .navbar__links {
+    display: none; /* Hide links by default */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navbar__links.active {
+    display: flex; /* Show links when menu is active */
+  }
+
+
+  .navLink {
+    font-size: 1.1rem; /* Smaller font size for nav links on smaller screens */
+    text-transform: none; /* Remove text transform on small screens */
+  }
+
+  .logoNav {
+    width: 3rem; /* Smaller logo on smaller screens */
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+  .navLink {
+    font-size: 1rem; /* Even smaller font size */
+  }
+
+  .navbar__links {
+    display: none;
+  }
+
+  .logoNav {
+    width: 2.5rem; /* Even smaller logo */
+  }
 }
