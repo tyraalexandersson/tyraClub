@@ -44,9 +44,7 @@ a {
 /* Hamburger Menu Styles */
 .hamburger {
   display: none;
-  flex-direction: column;
   cursor: pointer;
-  gap: 5px;
 }
 
 .bar {
@@ -62,29 +60,72 @@ a {
     padding: 10px 15px; /* Reduced padding */
   }
 
- .navbar__links {
+  /* Position links container to be below the hamburger */
+  .navbar__links {
     display: none; /* Hide links by default */
     flex-direction: column;
-    align-items: center;
+    align-items: anchor-center;
     gap: 10px;
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+
+    width: 180px; /* Set fixed width */
+    background-color: #c1a4b8; /* Background to match the navbar */
+    box-shadow: -4px 3px 20px 5px rgb(74 120 74);
+    padding: 10px 0;
+    z-index: 100; /* Ensure the dropdown is above other content */
+    animation: pulseGlow 2s ease-in-out infinite;
   }
 
   .navbar__links.active {
-    display: flex; /* Show links when menu is active */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #c1a4b8;
+    padding: 10px;
+    border-radius: 4px;
   }
 
-
   .navLink {
-    font-size: 1.1rem; /* Smaller font size for nav links on smaller screens */
-    text-transform: none; /* Remove text transform on small screens */
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: 100%;
+    transition: background-color 0.2s, color 0.2s;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .navLink:hover {
+    background-color: #242424;
+    color: #c1a4b8;
+  }
+  /* invert color scheme when hovered */
+  .navbar__links:hover {
+    background-color: #242424; /* Dark background on hover */
+    color: #c1a4b8;
+  }
+  .navLink:active {
+    color: #c1a4b8; /* Change text color on active */
   }
 
   .logoNav {
     width: 3rem; /* Smaller logo on smaller screens */
   }
 
+  /* Show hamburger menu icon on small screens */
   .hamburger {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
+
+  .hamburgerIcon {
+    width: 4rem;
   }
 }
 
@@ -94,11 +135,19 @@ a {
     font-size: 1rem; /* Even smaller font size */
   }
 
-  .navbar__links {
-    display: none;
-  }
-
   .logoNav {
     width: 2.5rem; /* Even smaller logo */
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: -4px 3px 20px 5px rgba(74, 120, 74, 0.4);
+  }
+  50% {
+    box-shadow: -4px 3px 30px 10px rgba(74, 120, 74, 0.8);
+  }
+  100% {
+    box-shadow: -4px 3px 20px 5px rgba(74, 120, 74, 0.4);
   }
 }
