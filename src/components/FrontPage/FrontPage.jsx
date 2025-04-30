@@ -1,6 +1,13 @@
 import "./FrontPage.style.css";
+import { useNavigate } from "react-router-dom";
 
 const FrontPage = () => {
+  const navigate = useNavigate();
+
+  const handleJoin = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="header-container">
       <h1 className="header">Welcome to the Tyra Club!</h1>
@@ -8,8 +15,9 @@ const FrontPage = () => {
         Your one-stop destination for all things Tyra!
       </p>
       <div className="button-container">
-        <button className="explore-button">Explore</button>
-        <button className="join-button">Join Now</button>
+        <button className="join-button" onClick={handleJoin}>
+          Join the Community!
+        </button>
       </div>
     </div>
   );

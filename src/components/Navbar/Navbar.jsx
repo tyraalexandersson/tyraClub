@@ -8,6 +8,7 @@ const Navbar = () => {
   const { user, logout } = useAppContext();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
+  const hamburgerRef = useRef();
 
   const handleLogout = async () => {
     try {
@@ -22,10 +23,16 @@ const Navbar = () => {
   // Click outside handler
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(e.target)
+      ) {
         setMenuOpen(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
@@ -49,13 +56,17 @@ const Navbar = () => {
           konto
         </Link>
 
-        {user && (
+        {user ? (
           <p className="navLink" onClick={handleLogout}>
             Logga ut
           </p>
+        ) : (
+          <Link to="/login" className="navLink">
+            Logga in
+          </Link>
         )}
       </div>
-      <div className="hamburger" onClick={toggleMenu}>
+      <div ref={hamburgerRef} className="hamburger" onClick={toggleMenu}>
         {/*  <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span> */}

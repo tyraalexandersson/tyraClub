@@ -67,9 +67,8 @@ a {
     align-items: anchor-center;
     gap: 10px;
     position: absolute;
-    top: 10rem;
-
-    right: 4rem; /* Right margin to keep the dropdown menu aligned with the screen */
+    top: 4rem;
+    right: 1rem;
 
     width: 180px; /* Set fixed width */
     background-color: #c1a4b8; /* Background to match the navbar */
@@ -126,8 +125,7 @@ a {
   }
 
   .hamburgerIcon {
-    width: 100%;
-    scale: 0.2;
+    width: 4rem;
   }
 }
 
