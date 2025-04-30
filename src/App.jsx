@@ -1,9 +1,11 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import Auth from "./components/Auth/Auth";
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-import Home from "./components/Home/Home";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Auth, Navbar, Footer, Home, FrontPage } from "./components";
+/* import Navbar from "./components";
+import Footer from "./components";
+import Home from "./components";
+import FrontPage from "./components"; */
+
 import { AppContextProvider, useAppContext } from "../context/contextProvider";
 
 function App() {
@@ -11,14 +13,24 @@ function App() {
 
   if (loading) return <div>Loading...</div>; // Show loading state while checking auth status
 
-  if (!user) return <Auth />; // Show login/signup form if user is not logged in
+  //if (!user) return <Auth />; // Show login/signup form if user is not logged in
 
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* You can add more protected routes here */}
+        {/* Public routes */}
+        <Route path="/" element={<FrontPage />} />
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/home" /> : <Auth />}
+        />
+        {/* Protected routes */}
+        <Route
+          path="/home"
+          element={user ? <Home /> : <Navigate to="/login" />}
+        />
+        {/* <Route path="/" element={<Home />} /> */}
       </Routes>
       <Footer />
     </>
