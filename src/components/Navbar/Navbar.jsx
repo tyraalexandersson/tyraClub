@@ -1,14 +1,15 @@
 import "./Navbar.style.css";
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAppContext } from "../../../context/contextProvider";
+import { useAppContext } from "../../context";
 import { hamburgerArrow } from "../../assets";
+import { ThemeSelect } from "../index";
 
 const Navbar = () => {
   const { user, logout } = useAppContext();
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef();
-  const hamburgerRef = useRef();
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   const handleLogout = async () => {
     try {
@@ -42,10 +43,14 @@ const Navbar = () => {
       <div className="navbar__logo">
         <img src="/smallLogo.png" alt="Logo" className="logoNav" />
       </div>
+
       <div
         ref={menuRef}
         className={`navbar__links ${menuOpen ? "active" : ""}`}
       >
+        <div className="navbar__themeSelect">
+          <ThemeSelect />
+        </div>
         <Link to="/" className="navLink">
           Hem
         </Link>

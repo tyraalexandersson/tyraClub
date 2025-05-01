@@ -1,12 +1,17 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Auth, Navbar, Footer, Home, FrontPage } from "./components";
-/* import Navbar from "./components";
-import Footer from "./components";
-import Home from "./components";
-import FrontPage from "./components"; */
+import {
+  Auth,
+  Navbar,
+  Footer,
+  Home,
+  FrontPage,
+  AppContextProvider,
+  useAppContext  
+} from "./index";
 
-import { AppContextProvider, useAppContext } from "../context/contextProvider";
+
+//import { AppContextProvider, useAppContext } from "./context/contextProvider";
 
 function App() {
   const { user, loading } = useAppContext(); // Using the context here

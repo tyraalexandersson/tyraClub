@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es2020",
+    "jsx": "preserve",
+    "baseUrl": "./src",
+    "checkJs": true,
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "context/*": ["./src/context/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "lib/*": ["./src/lib/*"]
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
+}
