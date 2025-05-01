@@ -1,0 +1,62 @@
+.btn__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.heart-btn {
+  position: relative;
+  width: 80px;
+  height: 70px;
+  background-color: red;
+  transform: rotate(-45deg);
+  border: none;
+  cursor: pointer;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.heart-btn::before,
+.heart-btn::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 70px;
+  background-color: red;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.heart-btn::before {
+  top: -40px;
+  left: 0;
+}
+
+.heart-btn::after {
+  left: 40px;
+  top: 0;
+}
+
+.heart-btn:hover {
+  transform: scale(1.1) rotate(-45deg);
+  background-color: #ff4d4d;
+}
+
+.heart-btn:hover::before,
+.heart-btn:hover::after {
+  background-color: #ff4d4d;
+}
+
+.heart-label {
+  transform: rotate(45deg); /* Counter-rotate text */
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1;
+  text-align: center;
+  pointer-events: none;
+}

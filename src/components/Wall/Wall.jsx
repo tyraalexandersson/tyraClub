@@ -9,7 +9,7 @@ const Wall = () => {
 
   return (
     <>
-      <main className="wall">
+      <main className="sectionContain">
         <div className="wall__container">
           <h1 className="wall__title">Welcome to your wall, {user.name}</h1>
           <p className="wall__description">
@@ -31,8 +31,12 @@ const Wall = () => {
           </div>
         </div>
         <div className="btn__container">
-          <button className="btn__create-group">Create a new group</button>
-          <button className="btn__join-group">Join a group</button>
+          <button className="heart-btn btn__create-group">
+            <span className="heart-label">Create a new group</span>
+          </button>
+          <button className="heart-btn btn__join-group">
+            <span className="heart-label">Join a group</span>
+          </button>
         </div>
       </main>
     </>

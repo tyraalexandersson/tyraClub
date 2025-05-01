@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-
+const STORAGE_KEY = "theme";
 const DEFAULT_THEME = "system";
 const initialState = {
   theme: DEFAULT_THEME,
@@ -9,10 +9,25 @@ const initialState = {
 export const ThemeContext = createContext(initialState);
 
 export const ThemeContextProvider = ({ children }) => {
-  const [theme, setTheme] = useState(DEFAULT_THEME);
+  const [theme, setTheme] = useState(() => {
+    try {
+      const storedTheme = localStorage.getItem(STORAGE_KEY);
+      return storedTheme ? storedTheme : DEFAULT_THEME;
+    } catch (error) {
+      console.warn("Error reading theme from localStorage:", error);
+      return DEFAULT_THEME;
+    }
+  });
   const value = {
     theme,
-    toggleTheme: (selectedTheme) => setTheme(selectedTheme),
+    toggleTheme: (selectedTheme) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, selectedTheme);
+      } catch (error) {
+        console.warn("Error saving theme to localStorage:", error);
+      }
+      setTheme(selectedTheme);
+    },
   };
 
   useEffect(() => {

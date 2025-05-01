@@ -11,6 +11,7 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const hamburgerRef = useRef(null);
 
+  const name = user.displayName ? user.displayName : "Gäst";
   const handleLogout = async () => {
     try {
       await logout();
@@ -42,6 +43,10 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar__logo">
         <img src="/smallLogo.png" alt="Logo" className="logoNav" />
+        
+        {name && (
+        <p className="navbar__user">Hej, {name}</p>
+        )}
       </div>
 
       <div
@@ -72,9 +77,6 @@ const Navbar = () => {
         )}
       </div>
       <div ref={hamburgerRef} className="hamburger" onClick={toggleMenu}>
-        {/*  <span className="bar"></span>
-        <span className="bar"></span>
-        <span className="bar"></span> */}
         <img src={hamburgerArrow} alt="Menu" className="hamburgerIcon" />
       </div>
     </nav>
