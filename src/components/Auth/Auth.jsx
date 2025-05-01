@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppContext } from "../../../context/contextProvider";
-import { supabase } from "../../../lib/supabaseClient";
+import { supabase } from "../../lib/supabaseClient";
 
 function Auth() {
   const { setUser } = useAppContext();
