@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../context";
 import { hamburgerArrow } from "../../assets";
+import { ThemeSelect } from "../index";
 
 const Navbar = () => {
   const { user, logout } = useAppContext();
@@ -42,6 +43,10 @@ const Navbar = () => {
       <div className="navbar__logo">
         <img src="/smallLogo.png" alt="Logo" className="logoNav" />
       </div>
+      <div className="navbar__themeSelect">
+        <ThemeSelect />
+      </div>
+
       <div
         ref={menuRef}
         className={`navbar__links ${menuOpen ? "active" : ""}`}

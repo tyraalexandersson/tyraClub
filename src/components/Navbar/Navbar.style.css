@@ -6,7 +6,12 @@
   padding: 10px 20px;
   background-color: #c1a4b8;
 }
-
+.navbar__themeSelect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
 .navbar__links {
   display: flex;
   gap: 20px;

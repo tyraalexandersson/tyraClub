@@ -19,26 +19,33 @@ export const ThemeContextProvider = ({ children }) => {
     const darkModePreference = window.matchMedia(
       "(prefers-color-scheme: dark)"
     );
+
+    const applyTheme = (isDark) => {
+      if (isDark) {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
+    };
+
     if (theme === "system") {
-      darkModePreference.matches
-        ? document.body.classList.add("dark")
-        : document.body.classList.remove("dark");
+      applyTheme(darkModePreference.matches);
 
       const handleSystemThemeChange = (e) => {
-        if (e.matches) {
-          document.body.classList.add("dark");
-        } else {
-          document.body.classList.remove("dark");
-        }
+        applyTheme(e.matches);
       };
-      darkModePreference.addEventListener("change", handleSystemThemeChange);
-    }
 
-    if (theme === "dark") {
-      document.body.classList.add("dark");
-    }
-    if (theme === "light") {
-      document.body.classList.remove("dark");
+      darkModePreference.addEventListener("change", handleSystemThemeChange);
+
+      // Cleanup
+      return () => {
+        darkModePreference.removeEventListener(
+          "change",
+          handleSystemThemeChange
+        );
+      };
+    } else {
+      applyTheme(theme === "dark");
     }
   }, [theme]);
 

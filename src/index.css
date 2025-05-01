@@ -25,11 +25,11 @@ body,
 }
 body {
   color-scheme: light;
-  color: #120707fd;
+  color: #242424;
   background-color: rgba(255, 255, 255, 0.87);
 }
 body.dark {
   color-scheme: dark;
-  background-color: #120707fd;
+  background-color: #242424;
   color: rgba(255, 255, 255, 0.87);
 }
