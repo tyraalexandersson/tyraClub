@@ -43,14 +43,14 @@ const Navbar = () => {
       <div className="navbar__logo">
         <img src="/smallLogo.png" alt="Logo" className="logoNav" />
       </div>
-      <div className="navbar__themeSelect">
-        <ThemeSelect />
-      </div>
 
       <div
         ref={menuRef}
         className={`navbar__links ${menuOpen ? "active" : ""}`}
       >
+        <div className="navbar__themeSelect">
+          <ThemeSelect />
+        </div>
         <Link to="/" className="navLink">
           Hem
         </Link>

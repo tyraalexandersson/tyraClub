@@ -12,16 +12,16 @@
 
 .themeSelect:hover {
   background-color: #c1a4b8;
-  border: 1px solid #242424;
+  /* border: 1px solid #242424; */
   color: #ebb0ee;
 
   transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
 }
 
-.themeSelect:focus {
+/* .themeSelect:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-}
+} */
 
 .themeSelect:active {
   background-color: #242424;
