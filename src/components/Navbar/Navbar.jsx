@@ -1,14 +1,14 @@
 import "./Navbar.style.css";
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAppContext } from "../../../context/contextProvider";
+import { useAppContext } from "../../context";
 import { hamburgerArrow } from "../../assets";
 
 const Navbar = () => {
   const { user, logout } = useAppContext();
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef();
-  const hamburgerRef = useRef();
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   const handleLogout = async () => {
     try {

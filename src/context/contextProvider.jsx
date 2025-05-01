@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 // Create the context
-const AppContext = createContext();
+const AppContext = createContext(null);
 
 const AppContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -18,6 +18,10 @@ const AppContextProvider = ({ children }) => {
         setUser(data.session.user);
         setUsername(data.session.user.user_metadata.user_name || "Guest");
       }
+      if (error) {
+        setError(error.message);
+      }
+      // Set loading to false after checking session
       setLoading(false);
     };
 
