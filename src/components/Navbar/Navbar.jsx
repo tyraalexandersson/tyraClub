@@ -11,7 +11,7 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const hamburgerRef = useRef(null);
 
-  const name = user.displayName ? user.displayName : "Gäst";
+  const name = user ? user.displayName : "Gäst";
   const handleLogout = async () => {
     try {
       await logout();
@@ -44,7 +44,7 @@ const Navbar = () => {
       <div className="navbar__logo">
         <img src="/smallLogo.png" alt="Logo" className="logoNav" />
         
-        {name && (
+        {user && name && (
         <p className="navbar__user">Hej, {name}</p>
         )}
       </div>
