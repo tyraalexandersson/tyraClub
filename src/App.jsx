@@ -7,11 +7,10 @@ import {
   Home,
   FrontPage,
   AppContextProvider,
-  useAppContext  
+  useAppContext,
+  Wall,
 } from "./index";
 
-
-//import { AppContextProvider, useAppContext } from "./context/contextProvider";
 
 function App() {
   const { user, loading } = useAppContext(); // Using the context here
@@ -35,7 +34,10 @@ function App() {
           path="/home"
           element={user ? <Home /> : <Navigate to="/login" />}
         />
-        {/* <Route path="/" element={<Home />} /> */}
+        <Route
+          path="/wall"
+          element={user ? <Wall /> : <Navigate to="/login" />}
+        />
       </Routes>
       <Footer />
     </>
