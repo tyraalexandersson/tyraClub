@@ -57,7 +57,7 @@ function Auth() {
           required
         />
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" disabled={loading} className="actionBtn">
           {loading ? "Processing..." : isLogin ? "Log In" : "Sign Up"}
         </button>
 
