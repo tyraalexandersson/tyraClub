@@ -45,7 +45,7 @@ const Navbar = () => {
         <img src="/smallLogo.png" alt="Logo" className="logoNav" />
         
         {user && name && (
-        <p className="navbar__user">Hej, {name}</p>
+        <p className="navbar__user">Hej, {user.name}</p>
         )}
       </div>
 
