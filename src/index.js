@@ -1,4 +1,5 @@
 import {
+  Account,
   Auth,
   Navbar,
   Footer,
@@ -16,6 +17,7 @@ import { useTheme } from "./hooks";
 
 export {
   Auth,
+  Account,
   Navbar,
   Footer,
   Home,

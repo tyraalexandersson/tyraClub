@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import {
+  Account,
   Auth,
   Navbar,
   Footer,
@@ -38,6 +39,7 @@ function App() {
           path="/wall"
           element={user ? <Wall /> : <Navigate to="/login" />}
         />
+        <Route path="/account" element={user ? <Account /> : <Navigate to="/login" />} /> 
       </Routes>
       <Footer />
     </>
