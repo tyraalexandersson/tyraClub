@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppContext } from "../../context";
 import { supabase } from "../../lib";
+import './Auth.style.css'
 
 function Auth() {
   const { setUser } = useAppContext();
@@ -38,8 +39,9 @@ function Auth() {
     <div className="auth-container">
       <h2>{isLogin ? "Login" : "Sign Up"}</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="loginform">
         <input
+        className="email_input"
           type="email"
           placeholder="Email"
           value={email}
