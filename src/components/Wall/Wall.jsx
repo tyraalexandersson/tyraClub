@@ -1,11 +1,10 @@
 import { useAppContext } from "../../context";
 import "./Wall.style.css";
-import { useState } from "react";
+
 
 const Wall = () => {
-  const { user } = useAppContext();
-  const [groups, setGroups] = useState([]); // swicth to supabase later down the line
-  const [posts, setPosts] = useState([]); // swicth to supabase later down the line
+  const { groups, setGroups, posts, setPosts } = useAppContext();
+ 
 
   return (
     <>

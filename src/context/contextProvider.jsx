@@ -10,6 +10,9 @@ const AppContextProvider = ({ children }) => {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
 
+  const [groups, setGroups] = useState([]);
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     // Get the session when the app loads
     const getSession = async () => {
@@ -58,7 +61,19 @@ const AppContextProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ user, setUser, username, setUsername, loading, error, logout }}
+      value={{
+        user,
+        setUser,
+        username,
+        setUsername,
+        loading,
+        error,
+        logout,
+        groups,
+        setGroups,
+        posts,
+        setPosts,
+      }}
     >
       {children}
     </AppContext.Provider>
