@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useAppContext } from "../../context";
-import { supabase } from "../../lib";
-import './Auth.style.css'
+import "./Auth.style.css";
 
 function Auth() {
-  const { setUser } = useAppContext();
+  const { registerUser, signInUser } = useAppContext();
   const [isLogin, setIsLogin] = useState(true); // 👈 toggle between login/signup
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -12,40 +11,30 @@ function Auth() {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const registerUser = async (email, password) => {
-    // Step 1: Sign up with user metadata
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          user_name: username, // goes into auth.users.user_metadata
-        },
-      },
-    });
+  const validateUserInput = (email, password, username) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 8 characters, 1 letter, 1 number
 
-    if (error) {
-      return { data: null, error }; // return early if signup failed
+    if (!emailRegex.test(email)) {
+      setErrorMsg("Invalid email format.");
+      return false;
     }
 
-    // Step 2: Insert into custom 'Users' table
-    const { id, email: userEmail } = data.user;
-
-    const { error: insertError } = await supabase.from("Users").insert([
-      {
-        id, // match auth.users.id
-        email: userEmail,
-        username, // custom username field
-      },
-    ]);
-
-    if (insertError) {
-      console.error("Failed to insert user:", insertError.message);
-      setErrorMsg("Signup succeeded, but user profile creation failed.");
+    if (!passwordRegex.test(password)) {
+      setErrorMsg(
+        "Password must be at least 8 characters long and contain at least one letter and one number."
+      );
+      return false;
+    }
+    if (!isLogin && username.trim() === "") {
+      setErrorMsg("Username cannot be empty.");
+      return false;
     }
 
-    return { data, error: null }; // success path
+    return true;
   };
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,19 +43,34 @@ function Auth() {
 
     let result;
 
-    if (isLogin) {
-      result = await supabase.auth.signInWithPassword({ email, password });
-    } else {
-      result = await registerUser(email, password);
+    // step 1.1 validate user input
+    if (!validateUserInput(email, password, username)) {
+      setLoading(false);
+      return { data: null, error: new Error(errorMsg) };
     }
 
+    if (isLogin) {
+      result = await signInUser(email, password);
+      if (result.error) {
+        setErrorMsg(result.error.message);
+        setLoading(false);
+        return;
+      }
+    } else {
+      result = await registerUser(email, password);
+      if (result.error) {
+        setErrorMsg(result.error.message);
+        setLoading(false);
+        return;
+      }      
+    }
+
+    // eslint-disable-next-line no-unused-vars
     const { data, error } = result;
 
     if (error) {
       setErrorMsg(error.message);
-    } else {
-      setUser(data.user); // success
-    }
+    } 
 
     setLoading(false);
   };
@@ -77,7 +81,7 @@ function Auth() {
 
       <form onSubmit={handleSubmit} className="loginform">
         <input
-        className="email_input"
+          className="email_input"
           type="email"
           placeholder="Email"
           value={email}
