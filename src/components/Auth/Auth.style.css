@@ -26,6 +26,7 @@
     color: #000000;
   }
   .loginform input {
+    color: black;
     padding: 0.75rem;
     margin-bottom: 1rem;
     border: 2px solid #000000;
