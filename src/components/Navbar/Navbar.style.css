@@ -61,10 +61,15 @@ a {
   font-weight: 800;
   font-family: "Roboto", sans-serif;
   cursor: pointer;
-  text-decoration: none;
+  pointer-events: none;
+
   color: #242424;
   text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+  mix-blend-mode: color-dodge;
 }
+
 .logoNav {
   width: 4rem;
 }

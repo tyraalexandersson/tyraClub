@@ -6,12 +6,12 @@ import { hamburgerArrow } from "../../assets";
 import { ThemeSelect } from "../index";
 
 const Navbar = () => {
-  const { user, logout } = useAppContext();
+  const { username, logout, user } = useAppContext();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const hamburgerRef = useRef(null);
 
-  const name = user ? user.displayName : "Gäst";
+  const name = username ? username : "Gäst";
   const handleLogout = async () => {
     try {
       await logout();
@@ -43,10 +43,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar__logo">
         <img src="/smallLogo.png" alt="Logo" className="logoNav" />
-        
-        {user && name && (
-        <p className="navbar__user">Hej, {name}</p>
-        )}
+
+        {name && <p className="navbar__user">{name}</p>}
       </div>
 
       <div

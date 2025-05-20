@@ -1,15 +1,47 @@
-.header-container {
+/* use the theme for bg color */
+
+
+.homeHeaderContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  height: 20vh;
-  background-color: #242424;
-  color: rgba(255, 255, 255, 0.87);
+  align-items: center;  
+  min-width: 100%;
+  background-color: inherit;
 }
 
-.header {
+.homeHeader {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1rem;
-  font-family: "Roboto", sans-serif;
+  margin-bottom: 1rem; 
+}
+
+.headerImg {
+  width: 50%;
+  height: auto;
+  max-width: 50%;
+  max-height: 100%;
+}
+
+
+.homeContent{
+  margin: 4rem 1rem;
+}
+@media (max-width: 365px) {
+  .header {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .headerContainer {
+   
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+ 
 }

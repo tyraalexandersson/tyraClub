@@ -4,5 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 4rem 2rem;
-  background-color: inherit;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-main);
 }
