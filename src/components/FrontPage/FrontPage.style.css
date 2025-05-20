@@ -1,7 +1,5 @@
-.header-container{
-    display:flexbox;
-    flex-direction: column;
-}.header-container {
+
+.header-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
