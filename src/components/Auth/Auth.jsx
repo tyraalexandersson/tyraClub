@@ -34,8 +34,6 @@ function Auth() {
     return true;
   };
 
-  
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -57,12 +55,12 @@ function Auth() {
         return;
       }
     } else {
-      result = await registerUser(email, password);
+      result = await registerUser(email, password, username);
       if (result.error) {
         setErrorMsg(result.error.message);
         setLoading(false);
         return;
-      }      
+      }
     }
 
     // eslint-disable-next-line no-unused-vars
@@ -70,7 +68,7 @@ function Auth() {
 
     if (error) {
       setErrorMsg(error.message);
-    } 
+    }
 
     setLoading(false);
   };
@@ -109,7 +107,7 @@ function Auth() {
           {loading ? "Processing..." : isLogin ? "Log In" : "Sign Up"}
         </button>
 
-        {errorMsg && <p className="error">{errorMsg}</p>}
+        {errorMsg && <span className="error">{errorMsg}</span>}
       </form>
 
       {/* Toggle link */}

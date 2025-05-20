@@ -1,77 +1,76 @@
 .auth-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 2rem 1rem;
-    background: linear-gradient(to bottom right, #ffe0f0, #472935);
-    font-family: 'Poppins', sans-serif;
-    color: #000000;
-    text-align: center;
- }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(to bottom right, #ffe0f0, #472935);
+  font-family: "Poppins", sans-serif;
+  color: #000000;
+  text-align: center;
+}
 .loginform {
-    background-color: #c1a4b8;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(143, 123, 135, 0.3);
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
+  background-color: #c1a4b8;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(143, 123, 135, 0.3);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
 }
 .auth-container h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #000000;
-  }
-  .loginform input {
-    color: black;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 2px solid #000000;
-    border-radius: 10px;
-    font-size: 1rem;
-    outline: none;
-    background-color: #fff;
-    transition: border 0.3s ease;
-  }
-  .loginform button[type="submit"] {
-    border-color: #000000;
-    background-color: #000000;
-    color: white;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .loginform button[type="submit"]:hover {
-    color:#000000;
-    background-color: #f5edf3;
-  }
-  .auth-container p {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #000000;
-  }
-  
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+.loginform input {
+  color: black;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  background-color: #fff;
+  transition: border 0.3s ease;
+}
+.loginform button[type="submit"] {
+  border-color: #000000;
+  background-color: #000000;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.loginform button[type="submit"]:hover {
+  color: #000000;
+  background-color: #f5edf3;
+}
+.auth-container p {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #000000;
+}
+
 .auth-container p button {
-    background: none;
-    border: none;
-    color: #000000;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: underline;
-    margin-left: 0.3rem;
-  }
+  background: none;
+  border: none;
+  color: #000000;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 0.3rem;
+}
 
-  .error {
-    color: rgb(218, 8, 8);
-    margin-top: 0.5rem;
-  }
-  .auth-container p button:hover {
-    color: #880e4f;
-  }
-
+.error {
+  color: rgb(218, 8, 8);
+  margin-top: 0.5rem;
+}
+.auth-container p button:hover {
+  color: #880e4f;
+}

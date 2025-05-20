@@ -67,7 +67,7 @@ const AppContextProvider = ({ children }) => {
         .from("Users")
         .select("*")
         .eq("user_id", data.user.id)
-        .single();
+        .maybeSingle();
 
       if (profile) {
         setUserProfile(profile);
@@ -83,7 +83,7 @@ const AppContextProvider = ({ children }) => {
       const { data, error } = await supabase.auth.getSession();
       if (data?.session) {
         setUser(data.session.user);
-        setUsername(data.session.user.user_metadata.user_name || "Guest");
+        await fetchAndSetUserProfile(data.session.user.id);
       }
       if (error) {
         setError(error.message);
@@ -99,7 +99,7 @@ const AppContextProvider = ({ children }) => {
       (event, session) => {
         if (session?.user) {
           setUser(session.user);
-          setUsername(session.user.user_metadata.user_name);
+          fetchAndSetUserProfile(session.user.id);
         } else {
           setUser(null);
           setUsername("Guest");
