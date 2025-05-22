@@ -13,6 +13,7 @@ import {
 } from "./index";
 import GroupCreatePage from "./components/_Group/GroupCreatePage/GroupCreatePage";
 import GroupSection from "./components/_Group/GroupSection/GroupSection";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   const { user, loading } = useAppContext(); // Using the context here
@@ -53,6 +54,9 @@ function App() {
           path="/groups/:id"
           element={user ? <GroupSection /> : <Navigate to="/login" />}
         />
+
+        {/* Catch-all route (404) */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

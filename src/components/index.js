@@ -8,6 +8,7 @@ import { ThemeSelect } from "./ThemeSelect.jsx";
 import Account from "./Account";
 import Button from "./Button/Button";
 import GroupCreatePage from "./_Group";
+import NotFound from "./NotFound";
 
 export {
   Account,
@@ -20,4 +21,5 @@ export {
   Wall,
   ThemeSelect,
   GroupCreatePage,
+  NotFound,
 };
