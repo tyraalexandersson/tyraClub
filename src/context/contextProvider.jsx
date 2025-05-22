@@ -49,7 +49,7 @@ const AppContextProvider = ({ children }) => {
     // Step 3: Fetch the user profile
     await fetchAndSetUserProfile(id);
 
-    return { data, error: null }; // success path
+    return { data, error: null }; 
   };
 
   //sign in user supabase.auth.signInWithPassword({ email, password });

@@ -10,6 +10,7 @@
   --text-main: #242424;
   --bg-main: rgba(255, 255, 255, 0.87);
   --font-main: "Roboto", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --border-main: rgba(0, 0, 0, 0.1);
 }
 
 *,
@@ -29,11 +30,12 @@ body,
 body {
   color-scheme: light;
   color: var(--text-main);
-  background-color: var(--bg-main);  
+  background-color: var(--bg-main);
   font-family: var(--font-main);
 }
 body.dark {
-  color-scheme: dark;  
-  --bg-main: #242424;  
+  color-scheme: dark;
+  --bg-main: #242424;
   --text-main: rgba(255, 255, 255, 1);
+  --border-main: rgba(255, 255, 255, 0.87);
 }

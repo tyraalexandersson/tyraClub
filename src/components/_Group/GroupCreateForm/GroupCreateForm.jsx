@@ -5,7 +5,7 @@ import { Button } from "../../index";
 import "./GroupCreateForm.style.css";
 
 const GroupCreateForm = () => {
-  const { createClub } = useAppContext();
+  const { createGroup } = useAppContext();
   const [error, setError] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -21,7 +21,7 @@ const GroupCreateForm = () => {
       return;
     }
 
-    const result = await createClub(name, description);
+    const result = await createGroup(name, description);
 
     if (result instanceof Error) {
       setError(result.message || "Failed to create club. Please try again.");
@@ -54,8 +54,8 @@ const GroupCreateForm = () => {
         type="submit"
         label="Create Club"
         variant="primary"
-        onClick={handleSubmit}
         className="btn btn__submit-group"
+        onClick={handleSubmit}
       />
       {error && <p className="error">{error}</p>}
     </form>

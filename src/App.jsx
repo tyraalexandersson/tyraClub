@@ -12,6 +12,7 @@ import {
   Wall,
 } from "./index";
 import GroupCreatePage from "./components/_Group/GroupCreatePage/GroupCreatePage";
+import GroupSection from "./components/_Group/GroupSection/GroupSection";
 
 function App() {
   const { user, loading } = useAppContext(); // Using the context here
@@ -47,6 +48,10 @@ function App() {
         <Route
           path="/groups/create"
           element={user ? <GroupCreatePage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/groups/:id"
+          element={user ? <GroupSection /> : <Navigate to="/login" />}
         />
       </Routes>
       <Footer />
