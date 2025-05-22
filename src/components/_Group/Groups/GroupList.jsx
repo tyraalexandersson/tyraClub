@@ -15,8 +15,11 @@ const GroupList = ({ groups }) => {
         <div
           key={group.id}
           className="group__item"
-          onClick={(e) => handleClickGroup(group.id)}
+          onClick={() => handleClickGroup(group.id)}
           id={group.id}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && handleClickGroup(group.id)}
         >
           <h3>{group.club_name}</h3>
           <p>{group.club_description}</p>
