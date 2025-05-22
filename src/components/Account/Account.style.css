@@ -73,3 +73,37 @@ button:hover {
   border: none;
   transition: all 0.2s ease-in-out;
 }
+.account__avatar {
+  display: flex;
+  width: 50%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* add media querys */
+@media (max-width: 768px) {
+  .account__details,
+  .account__actions_container,
+  .account__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .account__avatar {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .account__avatar img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+}

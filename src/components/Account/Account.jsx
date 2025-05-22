@@ -5,6 +5,10 @@ import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 
 const Account = () => {
   const { user, username } = useAppContext();
+
+  const handleAddImg = () => {
+    alert("Add image");
+  };
   return (
     <main className="sectionContain">
       <div className="account">
@@ -37,16 +41,25 @@ const Account = () => {
               className="avatar"
             />
           ) : (
-            <AccountBoxOutlinedIcon
-              className="avatar"
-              style={{
-                fontSize: "100px",
-                color: "#3f363c",
-                margin: "0 auto",
-                width: "100px",
-                height: "100px",
-              }}
-            />
+            <>
+              <AccountBoxOutlinedIcon
+                className="avatar"
+                style={{
+                  fontSize: "100px",
+                  color: "#3f363c",
+                  margin: "0 auto",
+                  width: "100px",
+                  height: "100px",
+                }}
+              />
+              <Button
+                className="mockBtn"
+                type="button"
+                variant={"secondary"}
+                label="Lägg till bild"
+                onClick={handleAddImg}
+              />
+            </>
           )}
         </div>
       </div>

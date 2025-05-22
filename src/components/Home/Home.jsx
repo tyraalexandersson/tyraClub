@@ -8,14 +8,17 @@ const Home = () => {
   //const userName = userProfile.user_name ? userProfile.user_name : "Friend";
 
   const handleStart = () => {   
-    window.location.href = "/groups/create"; 
+    window.location.href = "/wall"; 
   }
+  const handleFindClub = () => {
+    window.location.href = "/groups/search";
+  };
   return (
     <main className="homeContainer sectionContain">
       <div className="homeHeaderContainer">
         <img className="headerImg" src="/lgox.png" alt="Tyra club logo" />
         <h1 className="homeHeader">Hejsan {userName}!</h1>
-        <button className="homeCtaBtn">Hitta en club!</button>
+        <button className="homeCtaBtn" onClick={handleFindClub}>Hitta en club!</button>
       </div>
 
       <div className="homeContent">
