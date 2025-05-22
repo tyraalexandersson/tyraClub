@@ -1,23 +1,32 @@
-import GroupList from "../index";
-import GroupCreateForm from "../index";
-
+import { useParams } from "react-router-dom";
+import { useAppContext } from "../../../context/contextProvider";
+import GroupActivityList from "../GroupActivityList/GroupActivityList";
+import Group from "../Group/Group";
 import "./GroupSection.style.css";
 
-const GroupSection = ({ groups, setGroups }) => {
-  const handleCreateGroup = (newGroup) => {
-    const newId = crypto.randomUUID(); // Replace with Supabase ID later
-    const fullGroup = { id: newId, ...newGroup };
-    setGroups((prev) => [...prev, fullGroup]);
-  };
+const GroupSection = () => {
+  const { id } = useParams(); // <-- get group id from URL param
+  const { groups } = useAppContext();
+
+  // Find the selected group by id
+  const selectedGroup = groups.find((g) => String(g.id) === id);
 
   return (
-    <div className="groups__container">
-      <h2 className="groups__title">Your groups</h2>
-      <GroupList groups={groups} />
-      <GroupCreateForm onCreate={handleCreateGroup} />
-    </div>
+    <main className="sectionContain">
+      <div className="groupSection__group_container">
+        {selectedGroup ? (
+          <Group group={selectedGroup} />
+        ) : (
+          <p>Group not found</p>
+        )}
+      </div>
+
+      <div className="groupSection_other_container">
+        <h2>See what your other groups are up to</h2>
+        <GroupActivityList groups={groups} currentGroupId={id} />
+      </div>
+    </main>
   );
 };
 
 export default GroupSection;
-// This component is responsible for rendering the group section.

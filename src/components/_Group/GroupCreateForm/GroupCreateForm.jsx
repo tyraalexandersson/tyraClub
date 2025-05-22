@@ -1,35 +1,64 @@
 import { useState } from "react";
+import { useAppContext } from "../../../context/contextProvider";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../../index";
+import "./GroupCreateForm.style.css";
 
-const GroupCreateForm = ({ onCreate }) => {
+const GroupCreateForm = () => {
+  const { createGroup } = useAppContext();
+  const [error, setError] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !description) return;
-    onCreate({ name, description }); // Replace with Supabase later
-    setName("");
-    setDescription("");
+    setError(""); // clear previous errors
+
+    if (!name || !description) {
+      setError("Both name and description are required.");
+      return;
+    }
+
+    const result = await createGroup(name, description);
+
+    if (result instanceof Error) {
+      setError(result.message || "Failed to create club. Please try again.");
+      return;
+    }
+
+    if (result?.id) {
+      navigate(`/groups/${result.id}`);
+      setName("");
+      setDescription("");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="group-form">
       <input
         type="text"
-        placeholder="Group name"
+        placeholder="Club name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        className="group-form__input group-form__input_name"
       />
       <textarea
-        placeholder="Group description"
+        placeholder="Club description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        className="group-form__input group-form__input_description"
       />
-      <button type="submit" className="btn btn__submit-group">
-        Create Group
-      </button>
+      <Button
+        type="submit"
+        label="Create Club"
+        variant="primary"
+        className="btn btn__submit-group"
+        onClick={handleSubmit}
+      />
+      {error && <p className="error">{error}</p>}
     </form>
   );
 };
-
 export default GroupCreateForm;

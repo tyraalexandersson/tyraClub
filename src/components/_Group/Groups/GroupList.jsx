@@ -1,14 +1,14 @@
-import './GroupList.style.css';
+import "./GroupList.style.css";
 
 const GroupList = ({ groups }) => {
-  if (!groups.length) return <p>You haven't joined any groups yet.</p>;
+  if (!groups.length) return <p>You haven't joined any clubs yet.</p>;
 
   return (
     <div className="groups__list">
       {groups.map((group) => (
         <div key={group.id} className="group__item">
-          <h3>{group.name}</h3>
-          <p>{group.description}</p>
+          <h3>{group.club_name}</h3>
+          <p>{group.club_description}</p>
         </div>
       ))}
     </div>
@@ -16,4 +16,3 @@ const GroupList = ({ groups }) => {
 };
 
 export default GroupList;
-// This component is responsible for rendering the list of groups.

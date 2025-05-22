@@ -1,0 +1,36 @@
+.activityList_group-activity-list {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--bg-main);
+  border-radius: 8px;
+  flex-wrap: wrap;
+  width: 70%;
+  justify-content: center;
+}
+.group-activity-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: var(--bg-main);
+  border-radius: 8px;
+  border: 1px solid var(--border-main);
+  box-shadow: 0 2px 16px var(--border-main);
+  transition: all 0.2s;
+  cursor: pointer;
+  min-width: 15rem;
+  /* max-width: 11rem; */
+}
+.activity_list_header {
+  color: var(--text-main);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.activity_list_p {
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 400;
+}
