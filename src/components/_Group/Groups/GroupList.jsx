@@ -1,7 +1,7 @@
 import "./GroupList.style.css";
 
 const GroupList = ({ groups }) => {
-  if (!groups.length) return <p>You haven't joined any clubs yet.</p>;
+  if (!groups.length) return <p>Du har inte gått med i någon Club än.</p>;
 
   return (
     <div className="groups__list">

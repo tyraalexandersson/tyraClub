@@ -16,7 +16,7 @@ function Auth() {
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 8 characters, 1 letter, 1 number
 
     if (!emailRegex.test(email)) {
-      setErrorMsg("Invalid email format.");
+      setErrorMsg("Felaktigt email format.");
       return false;
     }
 
@@ -27,7 +27,7 @@ function Auth() {
       return false;
     }
     if (!isLogin && username.trim() === "") {
-      setErrorMsg("Username cannot be empty.");
+      setErrorMsg("Användarnmanet kan inte vara tom.");
       return false;
     }
 
@@ -89,7 +89,7 @@ function Auth() {
         {!isLogin && (
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Användarnamn"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -97,14 +97,14 @@ function Auth() {
         )}
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Lösenord"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
 
         <button type="submit" disabled={loading} className="actionBtn">
-          {loading ? "Processing..." : isLogin ? "Log In" : "Sign Up"}
+          {loading ? "Processing..." : isLogin ? "Logga In" : "Skapa konto"}
         </button>
 
         {errorMsg && <span className="error">{errorMsg}</span>}
@@ -114,7 +114,7 @@ function Auth() {
       <p>
         {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
         <button type="button" onClick={() => setIsLogin(!isLogin)}>
-          {isLogin ? "Sign Up" : "Log In"}
+          {isLogin ? "Skapa konto" : "Logga in"}
         </button>
       </p>
     </div>

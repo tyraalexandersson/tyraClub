@@ -17,12 +17,12 @@ const GroupSection = () => {
         {selectedGroup ? (
           <Group group={selectedGroup} />
         ) : (
-          <p>Group not found</p>
+          <p>Clubben hittades inte!</p>
         )}
       </div>
 
       <div className="groupSection_other_container">
-        <h2>See what your other groups are up to</h2>
+        <h2>Ta reda på vad de andra Clubbarna håller på med!</h2>
         <GroupActivityList groups={groups} currentGroupId={id} />
       </div>
     </main>

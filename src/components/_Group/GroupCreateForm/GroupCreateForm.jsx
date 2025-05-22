@@ -17,14 +17,14 @@ const GroupCreateForm = () => {
     setError(""); // clear previous errors
 
     if (!name || !description) {
-      setError("Both name and description are required.");
+      setError("Du behöver ha med både namn och beskrivning.");
       return;
     }
 
     const result = await createGroup(name, description);
 
     if (result instanceof Error) {
-      setError(result.message || "Failed to create club. Please try again.");
+      setError(result.message || "Det gick inte att skapa en ny club nu, försök igen.");
       return;
     }
 
@@ -39,20 +39,20 @@ const GroupCreateForm = () => {
     <form onSubmit={handleSubmit} className="group-form">
       <input
         type="text"
-        placeholder="Club name"
+        placeholder="Namn på club"
         value={name}
         onChange={(e) => setName(e.target.value)}
         className="group-form__input group-form__input_name"
       />
       <textarea
-        placeholder="Club description"
+        placeholder="Beskrivning av club"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         className="group-form__input group-form__input_description"
       />
       <Button
         type="submit"
-        label="Create Club"
+        label="Skapa Club"
         variant="primary"
         className="btn btn__submit-group"
         onClick={handleSubmit}

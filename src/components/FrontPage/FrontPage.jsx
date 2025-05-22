@@ -10,13 +10,13 @@ const FrontPage = () => {
 
   return (
     <div className="header-container">
-      <h1 className="header">Welcome to the Tyra Club!</h1>
+      <h1 className="header">Välkommen till Tyra Club!</h1>
       <p className="description">
-        Your one-stop destination for all things Tyra!
+        Håll kontakten med dina vänner och dela dina intressen med andra. Tyra Club är en plats för att skapa och delta i grupper som delar dina passioner.
       </p>
       <div className="button-container">
         <button className="join-button" onClick={handleJoin}>
-          Join the Community!
+          Börja Clubba!
         </button>
       </div>
     </div>
