@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import {
+  Account,
   Auth,
   Navbar,
   Footer,
@@ -10,14 +11,14 @@ import {
   useAppContext,
   Wall,
 } from "./index";
-
+import GroupCreatePage from "./components/_Group/GroupCreatePage/GroupCreatePage";
 
 function App() {
   const { user, loading } = useAppContext(); // Using the context here
 
   if (loading) return <div>Loading...</div>; // Show loading state while checking auth status
 
-  //if (!user) return <Auth />; // Show login/signup form if user is not logged in
+  if (!user) return <Auth />; // Show login/signup form if user is not logged in
 
   return (
     <>
@@ -35,8 +36,17 @@ function App() {
           element={user ? <Home /> : <Navigate to="/login" />}
         />
         <Route
+          path="/account"
+          element={user ? <Account /> : <Navigate to="/login" />}
+        />
+        {/* Group Routes */}
+        <Route
           path="/wall"
           element={user ? <Wall /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/groups/create"
+          element={user ? <GroupCreatePage /> : <Navigate to="/login" />}
         />
       </Routes>
       <Footer />

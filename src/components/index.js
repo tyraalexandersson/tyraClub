@@ -5,5 +5,19 @@ import Auth from "./Auth";
 import FrontPage from "./FrontPage";
 import Wall from "./Wall";
 import { ThemeSelect } from "./ThemeSelect.jsx";
+import Account from "./Account";
+import Button from "./Button/Button";
+import GroupCreatePage from "./_Group";
 
-export { Navbar, Footer, Home, Auth, FrontPage, Wall, ThemeSelect };
+export {
+  Account,
+  Button,
+  Navbar,
+  Footer,
+  Home,
+  Auth,
+  FrontPage,
+  Wall,
+  ThemeSelect,
+  GroupCreatePage,
+};

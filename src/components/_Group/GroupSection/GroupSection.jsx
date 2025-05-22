@@ -1,23 +1,18 @@
-import GroupList from "../index";
-import GroupCreateForm from "../index";
-
+import { useAppContext } from "../../../context/contextProvider";
+import GroupList from "../Groups/GroupList";
+import GroupCreateForm from "../GroupCreateForm/GroupCreateForm";
 import "./GroupSection.style.css";
 
-const GroupSection = ({ groups, setGroups }) => {
-  const handleCreateGroup = (newGroup) => {
-    const newId = crypto.randomUUID(); // Replace with Supabase ID later
-    const fullGroup = { id: newId, ...newGroup };
-    setGroups((prev) => [...prev, fullGroup]);
-  };
+const GroupSection = () => {
+  const { groups } = useAppContext();
 
   return (
     <div className="groups__container">
-      <h2 className="groups__title">Your groups</h2>
+      <h2 className="groups__title">Your Clubs</h2>
       <GroupList groups={groups} />
-      <GroupCreateForm onCreate={handleCreateGroup} />
+      <GroupCreateForm />
     </div>
   );
 };
 
 export default GroupSection;
-// This component is responsible for rendering the group section.

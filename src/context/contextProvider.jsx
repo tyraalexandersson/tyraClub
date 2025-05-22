@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 // Create the context
@@ -77,6 +77,120 @@ const AppContextProvider = ({ children }) => {
     return { data, error };
   };
 
+  // create a new group and insert it into the database
+  const createGroup = async (groupName, groupDescription) => {
+    const newGroup = {
+      club_name: groupName,
+      club_description: groupDescription,
+      created_by: user.id,
+      members_id: [user.id], // creator is also the first member
+    };
+
+    const { data, error } = await supabase
+      .from("Clubs")
+      .insert([newGroup])
+      .select("*")
+      .single();
+
+    if (error) {
+      console.error("Failed to create group:", error.message);
+      return new Error("Failed to create group. Please try again.");
+    } else {
+      setGroups((prevGroups) => [...prevGroups, data]);
+      return data;
+    }
+  };
+
+  const fetchGroups = useCallback(async () => {
+    if (!user?.id) return;
+
+    const { data, error } = await supabase
+      .from("Clubs")
+      .select("*")
+      .contains("members_id", [user.id]); // Only fetch clubs this user is a member of
+
+    if (error) {
+      console.error("Failed to fetch groups:", error.message);
+      setGroups([]);
+    } else {
+      setGroups(data || []);
+    }
+  }, [user?.id]);
+
+  const fetchPosts = async (clubId) => {
+    const { data, error } = await supabase
+      .from("Posts")
+      .select("*")
+      .eq("club_id", clubId)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Failed to fetch posts:", error.message);
+      return [];
+    }
+    return data;
+  };
+
+  const createPost = async (clubId, message) => {
+    const { data, error } = await supabase
+      .from("Posts")
+      .insert([
+        {
+          club_id: clubId,
+          author_id: user.id,
+          message_txt: message,
+        },
+      ])
+      .select("*")
+      .single();
+
+    if (error) {
+      console.error("Failed to create post:", error.message);
+      return null;
+    }
+
+    return data;
+  };
+  
+ 
+
+  // Log out the user and reset context state
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      setError(error.message);
+    } else {
+      setUser(null);
+      setUsername("Guest");
+    }
+  };
+
+  // Fetch user profile from the database
+  const fetchAndSetUserProfile = async (authUserId) => {
+    const { data, error } = await supabase
+      .from("Users")
+      .select("*")
+      .eq("user_id", authUserId)
+      .single();
+
+    if (error) {
+      console.error("Failed to fetch user profile:", error.message);
+      setError(error.message);
+      setUserProfile(null);
+    } else {
+      if (data) {
+        setUserProfile(data);
+        setUsername(data.user_name || "Guest");
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (user?.id) {
+      fetchGroups(); // load the user's clubs
+    }
+  }, [user, fetchGroups]);
+
   useEffect(() => {
     // Get the session when the app loads
     const getSession = async () => {
@@ -111,38 +225,6 @@ const AppContextProvider = ({ children }) => {
       authListener.subscription.unsubscribe();
     };
   }, []);
-
-  // Log out the user and reset context state
-  const logout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      setError(error.message);
-    } else {
-      setUser(null);
-      setUsername("Guest");
-    }
-  };
-
-  // Fetch user profile from the database
-  const fetchAndSetUserProfile = async (authUserId) => {
-    const { data, error } = await supabase
-      .from("Users")
-      .select("*")
-      .eq("user_id", authUserId)
-      .single();
-
-    if (error) {
-      console.error("Failed to fetch user profile:", error.message);
-      setError(error.message);
-      setUserProfile(null);
-    } else {
-      if (data) {
-        setUserProfile(data);
-        setUsername(data.user_name || "Guest");
-      }
-    }
-  };
-
   return (
     <AppContext.Provider
       value={{
@@ -161,6 +243,10 @@ const AppContextProvider = ({ children }) => {
         userProfile,
         registerUser,
         signInUser,
+        createGroup,
+        createPost,
+        fetchPosts,
+        fetchGroups,
       }}
     >
       {children}

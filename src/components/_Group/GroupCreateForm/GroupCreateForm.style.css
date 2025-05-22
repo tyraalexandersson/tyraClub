@@ -1,0 +1,98 @@
+/* GroupCreateForm.style.css */
+
+.group-form {
+  /* background: #fff; */
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  padding: 2rem 2.5rem;
+  max-width: 420px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.group-create-form h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.group-create-form label {
+  font-size: 1rem;
+  color: #4a5568;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.group-create-form input,
+.group-create-form textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f7fafc;
+  transition: border 0.2s;
+}
+
+.group-create-form input:focus,
+.group-create-form textarea:focus {
+  border-color: #3182ce;
+  outline: none;
+  background: #fff;
+}
+
+.group-create-form button {
+  background: linear-gradient(90deg, #3182ce 0%, #63b3ed 100%);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.9rem 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+
+.group-create-form button:hover {
+  background: linear-gradient(90deg, #2563eb 0%, #4299e1 100%);
+}
+
+.group-create-form .error-message {
+  color: #e53e3e;
+  font-size: 0.95rem;
+  margin-top: -1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+
+.group-form__input_name {
+  min-height: 2rem;
+}
+.group-form__input_description {
+  min-height: 5rem;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .group-create-form {
+    padding: 1.2rem 0.7rem;
+    max-width: 98vw;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .group-create-form h2 {
+    font-size: 1.2rem;
+  }
+
+  .group-create-form button {
+    font-size: 1rem;
+    padding: 0.8rem 0;
+  }
+}

@@ -1,4 +1,5 @@
 import {
+  Account,
   Auth,
   Navbar,
   Footer,
@@ -15,6 +16,7 @@ import { supabase } from "./lib/index";
 import { useTheme } from "./hooks";
 
 export {
+  Account,
   Auth,
   Navbar,
   Footer,
