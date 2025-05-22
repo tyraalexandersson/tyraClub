@@ -8,7 +8,7 @@ const Home = () => {
   //const userName = userProfile.user_name ? userProfile.user_name : "Friend";
 
   const handleStart = () => {   
-    window.location.href = "/groups/create"; 
+    window.location.href = "/wall"; 
   }
   return (
     <main className="homeContainer sectionContain">

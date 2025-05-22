@@ -1,0 +1,29 @@
+.groups__list {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.group__item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: var(--bg-main);
+  box-shadow: var(--border-main) 0px 4px 12px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+.group__item:hover {
+  transform: scale(1.02);
+  box-shadow: var(--border-main) 0px 8px 24px;
+}
