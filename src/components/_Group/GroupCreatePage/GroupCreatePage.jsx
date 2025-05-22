@@ -17,7 +17,7 @@ const GroupCreatePage = () => {
         .contains("members_id", [user.id]); // assuming you're storing member ids as an array
 
       if (data) setGroups(data);
-      else console.error("Failed to fetch user clubs:", error?.message);
+      else console.error("Kunde inte hämta:", error?.message);
     };
 
     fetchUserClubs();
@@ -26,7 +26,7 @@ const GroupCreatePage = () => {
   return (
     <main className="sectionContain">
       <div className="groups__page">
-        <h1>Create a New Club</h1>
+        <h1>Skapa ny Club</h1>
         <GroupCreateForm />
         <GroupList groups={groups} />
       </div>

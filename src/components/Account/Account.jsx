@@ -8,24 +8,24 @@ const Account = () => {
   return (
     <main className="sectionContain">
       <div className="account">
-        <h1>Account</h1>
-        <p>Manage your account settings and preferences here.</p>
+        <h1>ClubKonto</h1>
+        <p>Hantera ditt Club konto här!</p>
       </div>
       <div className="account__details">
         <div>
-          <h2>Account Details</h2>
+          <h2>Konto detaljer</h2>
           <p>
-            <strong>Username:</strong> {username}
+            <strong>Användarnamn:</strong> {username}
           </p>
           <p>
             <strong>Email:</strong> {user?.email}
           </p>
           <p>
-            <strong>Account Created:</strong>{" "}
+            <strong>Konto skapat:</strong>{" "}
             {new Date(user?.created_at).toLocaleDateString()}
           </p>
           <p>
-            <strong>Last Sign In:</strong>{" "}
+            <strong>Senast inloggad:</strong>{" "}
             {new Date(user?.last_sign_in_at).toLocaleDateString()}
           </p>
         </div>
@@ -53,13 +53,13 @@ const Account = () => {
       <div className="account__actions_container">
         <div className="account__actions">
           <Button
-            label="Update Account"
+            label="Uppdatera konto"
             variant="secondary"
             className="btn__update"
             onClick={() => alert("Update account")}
           />
           <Button
-            label="Delete Account"
+            label="Ta bort konto"
             variant="secondary"
             className="btn__delete"
             onClick={() => alert("Account deleted")}

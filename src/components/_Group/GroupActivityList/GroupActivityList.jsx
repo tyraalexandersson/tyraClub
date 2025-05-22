@@ -23,7 +23,19 @@ const GroupActivityList = ({ groups, currentGroupId }) => {
     loadActivity();
   }, [groups, fetchPosts]);
 
-  if (!groups.length) return <p>You haven't joined any groups yet.</p>;
+  if (!groups.length) return (
+    <>
+      <p>Du är inte medlem i någon club än!</p>
+      <p>Gå med i en club för att se de senaste inläggen.</p>
+      <p>Du kan också skapa en ny club.</p>
+      <Link to="/groups/create" className="btn btn__create-group">
+        Skapa en ny club
+      </Link>
+      <Link to="/groups/search" className="btn btn__join-group">
+        Gå med i en club
+      </Link>
+    </>
+  );
 
   return (
     <div className="activityList_group-activity-list">

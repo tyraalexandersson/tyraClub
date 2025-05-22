@@ -97,11 +97,11 @@ const Group = ({ group }) => {
 
       <div className="group__posts">
         {groupPosts.length === 0 ? (
-          <p>No messages yet.</p>
+          <p>Ingen har skrivit något än!</p>
         ) : (
           groupPosts.map((post) => (
             <div key={post.id} className="group__post">
-              <h3>{usersMap[post.author_id] || post.author_id} says:</h3>
+              <h3>{usersMap[post.author_id] || post.author_id} säger:</h3>
               <p>{post.message_txt}</p>
               <small>at {new Date(post.created_at).toLocaleString()}</small>
             </div>

@@ -11,10 +11,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="footerSitemap">
         <h3>Site Map</h3>
-        <a href="#home">Home</a>
-        <a href="#account">Account</a>
-        <a href="#wall">Wall</a>
-        <a href="#logout">Log Out</a>
+        <a href="#home">Hem</a>
+        <a href="#account">Konto</a>
+        <a href="#wall">Vägg</a>
+        <a href="#logout">Logga ut</a>
       </div>
       <div className="signature">
         <p>Tyra Club</p>
