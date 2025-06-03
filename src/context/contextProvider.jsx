@@ -13,6 +13,7 @@ const AppContextProvider = ({ children }) => {
 
   const [groups, setGroups] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [allGroups, setAllGroups] = useState([]);
 
   const registerUser = async (email, password, username) => {
     // Step 1: Sign up with user metadata
@@ -116,6 +117,18 @@ const AppContextProvider = ({ children }) => {
       setGroups(data || []);
     }
   }, [user?.id]);
+
+  const fetchAllGroups = async () => {
+    const { data, error } = await supabase
+      .from("Clubs")
+      .select("*");
+    if (error) {
+      console.error("Failed to fetch all groups:", error.message);
+      return [];
+    }
+    setAllGroups(data || []);
+    return data || [];
+  };
 
   const fetchPosts = async (clubId) => {
     const { data, error } = await supabase
@@ -247,6 +260,8 @@ const AppContextProvider = ({ children }) => {
         createPost,
         fetchPosts,
         fetchGroups,
+        fetchAllGroups,
+        allGroups,
       }}
     >
       {children}

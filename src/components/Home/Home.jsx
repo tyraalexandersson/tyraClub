@@ -1,5 +1,6 @@
 import { useAppContext } from "../../context";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../index";
 import "./Home.style.css";
 
 const Home = () => {
@@ -20,9 +21,13 @@ const Home = () => {
       <div className="homeHeaderContainer">
         <img className="headerImg" src="/lgox.png" alt="Tyra club logo" />
         <h1 className="homeHeader">Hejsan {userName}!</h1>
-        <button className="homeCtaBtn" onClick={handleFindClub}>
-          Hitta en club!
-        </button>
+        <Button
+          variant="btn-primary"
+          label="Hitta en club!"
+          type="button"
+          className="homeCtaBtn"
+          onClick={handleFindClub}
+        />
       </div>
 
       <div className="homeContent">
@@ -41,10 +46,13 @@ const Home = () => {
 
       <div className="homeContent">
         <div className="homeContentBtnBox">
-          <button className="homeContentBtn" onClick={handleStart}>
-            {" "}
-            Starta äventyret!
-          </button>
+          <Button
+            variant="btn-secondary"
+            label="Starta äventyret!"
+            className="homeContentBtn"
+            type="button"
+            onClick={handleStart}
+          />
         </div>
       </div>
     </main>
