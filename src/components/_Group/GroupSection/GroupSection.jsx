@@ -4,7 +4,7 @@ import GroupActivityList from "../GroupActivityList/GroupActivityList";
 import Group from "../Group/Group";
 import "./GroupSection.style.css";
 import { Button } from "../../index";
-import { useState, useEffect, useCallback, use } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "../../../lib/supabaseClient";
 
 const GroupSection = () => {
