@@ -14,6 +14,7 @@ import {
 import GroupCreatePage from "./components/_Group/GroupCreatePage/GroupCreatePage";
 import GroupSection from "./components/_Group/GroupSection/GroupSection";
 import NotFound from "./components/NotFound/NotFound";
+import GroupSelected from "./components/_Group/GroupSelected/GroupSelected";
 
 function App() {
   const { user, loading } = useAppContext(); // Using the context here
@@ -52,6 +53,10 @@ function App() {
         />
         <Route
           path="/groups/:id"
+          element={user ? <GroupSelected /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/groups/search"
           element={user ? <GroupSection /> : <Navigate to="/login" />}
         />
 

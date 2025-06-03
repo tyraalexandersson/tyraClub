@@ -1,42 +1,32 @@
 import "./GroupList.style.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { supabase } from "../../../lib/supabaseClient";
+import { useAppContext } from "../../../context/contextProvider";
 
 const GroupList = ({ groups }) => { 
   const navigate = useNavigate();
-  const [allClubs, setAllClubs] = useState([]);
+  const { allGroups, fetchAllGroups } = useAppContext();
+  
   const [error, setError] = useState("");
 
   const handleClickGroup = (id) => {
     navigate(`/groups/${id}`);
   };
 
-  // Fetch all clubs if user isn't a member of any group yet
+  
+
   useEffect(() => {
-    const fetchAllClubs = async () => {
+    const loadAllGroups = async () => {
       try {
-        const { data, error } = await supabase
-          .from("Clubs")
-          .select("id, club_name, club_description");
-
-        if (error) {
-          console.error("Error fetching clubs:", error.message);
-          setError("Could not load clubs. Please try again.");
-          return;
-        }
-
-        setAllClubs(data || []);
+        //eslint-disable-next-line no-unused-vars
+        const clubs = await fetchAllGroups();
       } catch (err) {
-        console.error("Unexpected error fetching clubs:", err.message);
-        setError("Something went wrong. Please try again.");
+        console.error("Error loading all groups:", err.message);
+        setError("Could not load groups. Please try again.");
       }
-    };
-
-    if (!groups.length) {
-      fetchAllClubs();
     }
-  }, [groups]);
+    loadAllGroups();
+  },[fetchAllGroups]);
 
   if (!groups.length) {
     return (
@@ -44,9 +34,9 @@ const GroupList = ({ groups }) => {
         <p>Du har inte gått med i någon Club än.</p>
         <p>Gå med i en Club för att se vad de andra Clubbarna håller på med!</p>
         {error && <p className="error">{error}</p>}
-        {allClubs.length ? (
+        {allGroups.length ? (
           <div className="groups__list">
-            {allClubs.map((club) => (
+            {allGroups.map((club) => (
               <div
                 key={club.id}
                 className="group__item"
