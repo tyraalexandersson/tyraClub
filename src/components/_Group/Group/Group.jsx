@@ -5,12 +5,26 @@ import { Button } from "../../index";
 import { supabase } from "../../../lib/supabaseClient";
 
 const Group = ({ group }) => {
-  const { posts, setPosts, fetchPosts, createPost } = useAppContext();
+  const { posts, setPosts, fetchPosts, createPost, user } = useAppContext();
   const [message, setMessage] = useState("");
   const [groupPosts, setGroupPosts] = useState([]);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [usersMap, setUsersMap] = useState({});
+  const [isMember, setIsMember] = useState(false);
+  const userId = user.id;
+
+  const checkIfMember = useCallback(() => {
+    if (!user || !group?.id) return;
+
+    // Check if the user is a member of the group
+    const isMember = group.members_id?.includes(userId);
+    setIsMember(isMember);
+  }, [userId, group, user]);
+
+  useEffect(() => {
+    checkIfMember();
+  }, [checkIfMember, user, group]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,6 +104,54 @@ const Group = ({ group }) => {
     fetchUsers();
   }, [groupPosts]);
 
+  const handleJoinGroup = async () => {
+    try {
+      if (!user) return;
+
+      const userId = user.id;
+
+      // Fetch current members_id array
+      const { data: clubData, error: fetchError } = await supabase
+        .from("Clubs")
+        .select("members_id")
+        .eq("id", group.id)
+        .single();
+
+      if (fetchError || !clubData) {
+        setError("Failed to fetch group data.");
+        console.error(fetchError);
+        return;
+      }
+
+      const currentMembers = clubData.members_id || [];
+
+      if (currentMembers.includes(userId)) {
+        setError("You are already a member of this group.");
+        return;
+      }
+
+      const updatedMembers = [...currentMembers, userId];
+
+      const { error: updateError } = await supabase
+        .from("Clubs")
+        .update({ members_id: updatedMembers })
+        .eq("id", group.id);
+
+      if (updateError) {
+        setError("Failed to join group. Please try again.");
+        console.error(updateError);
+        return;
+      }
+
+      setError("");
+      setIsMember(true); // 👈 Immediately hide the button!
+      alert("Successfully joined the group!");
+    } catch (err) {
+      console.error("Unexpected error:", err.message);
+      setError("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <div className="group">
       {error && <p className="error">{error}</p>}
@@ -124,6 +186,14 @@ const Group = ({ group }) => {
           onClick={handleSubmit}
         />
       </form>
+      {!isMember && (
+      <Button
+        variant="primary"
+        label="Join the group"
+        className="joinBtn"
+        onClick={handleJoinGroup}
+      />
+      )}
     </div>
   );
 };
